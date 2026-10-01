@@ -1,3 +1,25 @@
 spring:
   application:
     name: backend
+  datasource:
+    url: jdbc:h2:mem:workflex;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+workflex:
+  import:
+    csv-location: classpath:workations.csv
+  cors:
+    allowed-origins: http://localhost:4200
