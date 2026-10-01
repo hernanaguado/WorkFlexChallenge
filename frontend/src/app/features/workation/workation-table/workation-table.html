@@ -1,0 +1,95 @@
+@switch (status()) {
+  @case ('loading') {
+    <div class="state" role="status">
+      <mat-spinner diameter="32" />
+      <span>Loading workations…</span>
+    </div>
+  }
+  @case ('error') {
+    <div class="state state--error" role="alert">
+      <span>Workations could not be loaded.</span>
+      <button type="button" class="retry" (click)="loadWorkations()">Try again</button>
+    </div>
+  }
+  @case ('loaded') {
+    @if (dataSource.data.length === 0) {
+      <div class="state">No workations found.</div>
+    } @else {
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+          <ng-container matColumnDef="employee">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by employee">
+              Employee
+            </th>
+            <td mat-cell *matCellDef="let workation">{{ workation.employee }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="origin">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by origin">
+              Origin
+            </th>
+            <td mat-cell *matCellDef="let workation">
+              <span class="country">
+                @if (workation.originCode) {
+                  <img class="flag" [src]="'https://flagcdn.com/w40/' + workation.originCode + '.png'" alt="" />
+                }
+                <span class="muted">{{ workation.origin }}</span>
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="destination">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by destination">
+              Destination
+            </th>
+            <td mat-cell *matCellDef="let workation">
+              <span class="country">
+                @if (workation.destinationCode) {
+                  <img class="flag" [src]="'https://flagcdn.com/w40/' + workation.destinationCode + '.png'" alt="" />
+                }
+                <span class="muted">{{ workation.destination }}</span>
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="start">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by start date">
+              Start
+            </th>
+            <td mat-cell *matCellDef="let workation" class="muted">{{ workation.start | date: 'dd/MM/yyyy' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="end">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by end date">
+              End
+            </th>
+            <td mat-cell *matCellDef="let workation" class="muted">{{ workation.end | date: 'dd/MM/yyyy' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="workingDays">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by working days">
+              Working days
+            </th>
+            <td mat-cell *matCellDef="let workation" class="muted centered">{{ workation.workingDays }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="risk">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by risk">
+              Risk
+            </th>
+            <td mat-cell *matCellDef="let workation">
+              @let risk = riskDisplay(workation.risk);
+              <span class="risk">
+                <img class="risk-icon" [src]="risk.icon" alt="" />
+                <span>{{ risk.label }}</span>
+              </span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    }
+  }
+}

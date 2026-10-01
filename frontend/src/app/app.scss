@@ -1,0 +1,48 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.app-footer-logo {
+  display: block;
+  height: 1.5rem;
+  width: auto;
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.app-title {
+  margin: 0;
+  line-height: 0;
+}
+
+.app-logo {
+  display: block;
+  height: 2.5rem;
+  width: auto;
+}
+
+.app-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}

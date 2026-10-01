@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$cyan-palette,
+        tertiary: mat.$green-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+:root {
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-border: #e2e5ea;
+  --color-text: #1f2328;
+  --color-muted: #656d76;
+  --color-header-bg: #f1f3f8;
+  --color-row-hover: #eef6f5;
+  --color-error: #c62828;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  color-scheme: light;
+  margin: 0;
+  height: 100%;
+  font: var(--mat-sys-body-medium);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
