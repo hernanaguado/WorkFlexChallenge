@@ -1,0 +1,8 @@
+workationId,employee,origin,destination,start,end,workingDays,risk
+e1,"Smith, John",United Kingdom,Czechia,2024-02-01,2024-02-15,10,LOW
+e2,Min-jun Kim,South Korea,Netherlands,2024-03-01,2024-03-10,7,NO_RISK
+e3,Jane Doe,Atlantis,Germany,2024-04-01,2024-04-05,4,high
+e4,Invalid Risk,Germany,Spain,2024-05-01,2024-05-05,4,MEDIUM
+e5,Bad Date,Germany,Spain,2024-13-01,2024-06-05,4,HIGH
+e6,Missing Fields,Germany,Spain,2024-07-01
+e7,,Germany,Spain,2024-08-01,2024-08-05,4,NO
